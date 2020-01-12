@@ -12,7 +12,7 @@ references:
       PGPASSWORD: ""
       RAILS_ENV: test
   postgres: &postgres
-    image: circleci/postgres:9.5-alpine
+    image: circleci/postgres:11
     environment:
       POSTGRES_USER: root
       POSTGRES_DB: rails_test
@@ -38,8 +38,7 @@ jobs:
             - bundle-v2-
       - run:
           name: Bundle Install
-          command: |
-            cd application
+          command: 
             bundle check || bundle install
       # Store bundle cache
       - save_cache:
