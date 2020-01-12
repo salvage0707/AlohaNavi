@@ -32,14 +32,14 @@ jobs:
       # bundle cache
       - restore_cache:
           keys:
-            - bundle-v2-{{ checksum "Gemfile.lock" }}
+            - bundle-v2-{{ checksum "application/Gemfile.lock" }}
             - bundle-v2-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       # Store bundle cache
       - save_cache:
-          key: bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: bundle-v2-{{ checksum "application/Gemfile.lock" }}
           paths:
             - vendor/bundle
   test:
@@ -51,7 +51,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v2-{{ checksum "Gemfile.lock" }}
+            - bundle-v2-{{ checksum "application/Gemfile.lock" }}
             - bundle-v2-
       - run:
           name: Bundle Install
