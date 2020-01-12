@@ -8,14 +8,12 @@ references:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: application/vendor/bundle
       PGHOST: 127.0.0.1
-      PGUSER: circleci-user
-      PGPASSWORD: ""
       RAILS_ENV: test
   postgres: &postgres
     image: circleci/postgres:11
     environment:
       POSTGRES_USER: root
-      POSTGRES_DB: rails_test
+      POSTGRES_DB: app_test
       POSTGRES_PASSWORD: password
 
 jobs:
@@ -71,6 +69,8 @@ jobs:
       - run:
           command: |
             cd application
+            la -a
+            ls vender/bundle
             mkdir /tmp/test-results
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
