@@ -24,9 +24,6 @@ jobs:
       - *default_docker_ruby_executor
     steps:
       - checkout
-      - run:
-          name: change directory 
-          command: cd application
       # Which version of bundler?
       - run:
           name: Which bundler?
@@ -38,7 +35,8 @@ jobs:
             - bundle-v2-
       - run:
           name: Bundle Install
-          command: 
+          command: |
+            cd application
             bundle check || bundle install
       # Store bundle cache
       - save_cache:
@@ -61,7 +59,9 @@ jobs:
             - bundle-v2-
       - run:
           name: Bundle Install
-          command: bundle check || bundle install
+          command: |
+            cd application
+            bundle check || bundle install
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
