@@ -29,8 +29,8 @@ jobs:
       # bundle cache
       - restore_cache:
           keys:
-            - bundle-v3-{{ checksum "application/Gemfile.lock" }}
-            - bundle-v3-
+            - bundle-v4-{{ checksum "application/Gemfile.lock" }}
+            - bundle-v4-
       - run:
           name: Bundle Install
           command: |
@@ -38,7 +38,7 @@ jobs:
             bundle check || bundle install
       # Store bundle cache
       - save_cache:
-          key: bundle-v3-{{ checksum "application/Gemfile.lock" }}
+          key: bundle-v4-{{ checksum "application/Gemfile.lock" }}
           paths:
             - application/vendor/bundle
   test:
@@ -50,8 +50,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v3-{{ checksum "application/Gemfile.lock" }}
-            - bundle-v3-
+            - bundle-v4-{{ checksum "application/Gemfile.lock" }}
+            - bundle-v4-
       - run:
           name: Bundle Install
           command: |
@@ -69,8 +69,6 @@ jobs:
       - run:
           command: |
             cd application
-            ls -a
-            ls vender/bundle
             mkdir /tmp/test-results
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
