@@ -26,8 +26,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: change directory 
-        command: cd application
+          name: change directory 
+          command: cd application
       # Which version of bundler?
       - run:
           name: Which bundler?
