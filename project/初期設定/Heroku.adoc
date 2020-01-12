@@ -1,0 +1,18 @@
+:toc:
+:imagesdir: img
+
+= Heroku
+
+== デプロイ(初回)
+Dockerfileがあるディレクトリで実行
+
+1. `$ docker-compose build`
+1. `$ docker-compose up -d`
+1. `$ heroku login`
+1. `$ heroku container:login`
+1. `$ heroku create`
+1. `$ heroku container:push web`
+1. `$ heroku addons:create heroku-postgresql:hobby-dev`
+1. `$ heroku run rails db:migrat`
+1. `$ heroku container:release web`
+1. `$ heroku open`

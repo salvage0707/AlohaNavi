@@ -1,0 +1,28 @@
+:toc:
+:imagesdir: img
+
+= コマンド早見表
+
+`Docker` と `docker-compose` を使用した、コンテナ内でのコマンド実行方法を記載
+
+== docker compose
+
+|===
+|コマンド |説明|
+
+|`docker-compose build`
+|
+
+|`docker-compose up` 
+|
+
+|`docker rm `docker ps -a -q``
+|
+
+|===
+
+== 手順
+
+1. git clone url Resbo
+1. docker-compose build
+1. docker-compose up
