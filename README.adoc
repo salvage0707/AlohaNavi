@@ -20,11 +20,16 @@
 1. `localhost:3000/system/test` にアクセスして、メッセージが帰ってきたらOK 
 1. `$ docker-compose down`
 
-=== 新規作成したリポジトリに変更
+=== originのURLを新規作成したリポジトリに変更
 
 1. `$ git remote set-url origin url`
-1. `$ git push -u origin master`
 ※ `url` はリポジトリのURL
+
+=== リポジトリにpush
+
+1. `README.adoc` をプロジェクトのものに書き換える
+1. `$ git push -u origin master`
+
 
 === テンプレートの更新時の初期設定(任意)
 
@@ -41,3 +46,4 @@
 === 反映手順
 
 1. `git pull template master`
+※ `README.adoc` の変更があった場合に、CONFLICTが起きる。プロジェクトで検討して反映すること。
