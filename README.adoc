@@ -1,0 +1,20 @@
+:toc:
+:imagesdir: img
+
+== プロジェクト
+
+== 開始手順
+
+=== 前提条件
+
+1. `Docker` がインストールされている
+1. `git` がインストールされている
+
+=== 手順
+
+1. `$ git clone https://github.com/salvage0707-sgt/rails_api_template.git appname`
+1. `$ docker-compose build`
+1. `$ docker-compose up -d`
+1. `$ docker-compose run web rails db:create`
+1. `localhost:3000/system/test` にアクセスして、メッセージが帰ってきたらOK 
+1. `$ docker-compose down`
