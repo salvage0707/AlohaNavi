@@ -4,6 +4,7 @@
 = プロジェクト
 
 == 開始手順
+プロジェクトの開始手順
 
 === 前提条件
 
@@ -21,8 +22,22 @@
 
 === 新規作成したリポジトリに変更
 
-1. Github( `…or push an existing repository from the command line` )に従う
-----
-$ git remote add origin https://github.com/salvage0707-sgt/ResBo.git
-$ git push -u origin master
-----
+1. `$ git remote set-url origin url`
+1. `$ git push -u origin master`
+※ `url` はリポジトリのURL
+
+=== テンプレートの更新時の初期設定(任意)
+
+本テンプレートが更新された場合に、反映するための設定
+1. `git remote add template https://github.com/salvage0707-sgt/rails_api_template.git`
+
+
+== テンプレートの更新
+使用したテンプレートが更新された場合に、反映する手順
+
+=== 初期設定
+1. `git remote add template https://github.com/salvage0707-sgt/rails_api_template.git`
+
+=== 反映手順
+
+1. `git pull template master`
