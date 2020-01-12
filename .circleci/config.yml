@@ -6,7 +6,7 @@ references:
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
-      BUNDLE_PATH: vendor/bundle
+      BUNDLE_PATH: application/vendor/bundle
       PGHOST: 127.0.0.1
       PGUSER: circleci-user
       PGPASSWORD: ""
@@ -36,12 +36,14 @@ jobs:
             - bundle-v2-
       - run:
           name: Bundle Install
-          command: bundle check || bundle install
+          command: |
+            cd application
+            bundle check || bundle install
       # Store bundle cache
       - save_cache:
           key: bundle-v2-{{ checksum "application/Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - application/vendor/bundle
   test:
     parallelism: 3
     docker:
