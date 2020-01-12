@@ -22,6 +22,7 @@ jobs:
   build:
     docker:
       - *default_docker_ruby_executor
+    working_directory: ~/application
     steps:
       - checkout
       # Which version of bundler?
