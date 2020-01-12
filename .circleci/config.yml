@@ -25,6 +25,9 @@ jobs:
     working_directory: ~/application
     steps:
       - checkout
+      - run:
+        name: change directory 
+        command: cd application
       # Which version of bundler?
       - run:
           name: Which bundler?
@@ -32,7 +35,7 @@ jobs:
       # bundle cache
       - restore_cache:
           keys:
-            - bundle-v2-{{ checksum "application/Gemfile.lock" }}
+            - bundle-v2-{{ checksum "Gemfile.lock" }}
             - bundle-v2-
       - run:
           name: Bundle Install
@@ -41,9 +44,9 @@ jobs:
             bundle check || bundle install
       # Store bundle cache
       - save_cache:
-          key: bundle-v2-{{ checksum "application/Gemfile.lock" }}
+          key: bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
-            - application/vendor/bundle
+            - vendor/bundle
   test:
     parallelism: 3
     docker:
