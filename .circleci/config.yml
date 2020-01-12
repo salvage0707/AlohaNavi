@@ -42,7 +42,7 @@ jobs:
       - save_cache:
           key: bundle-v2-{{ checksum "application/Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - application/vendor/bundle
   test:
     parallelism: 3
     docker:
@@ -50,9 +50,6 @@ jobs:
       - *postgres
     steps:
       - checkout
-      - run:
-          name: change directory 
-          command: cd application
       - restore_cache:
           keys:
             - bundle-v2-{{ checksum "application/Gemfile.lock" }}
@@ -78,9 +75,9 @@ jobs:
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
       - store_test_results:
-          path: /tmp/test-results
+          path: application/tmp/test-results
       - store_artifacts:
-          path: /tmp/test-results
+          path: application/tmp/test-results
           destination: test-results
 
 workflows:
