@@ -67,10 +67,13 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          command: |
+            cd application
+            bundle exec rails db:schema:load --trace
       # Run rspec in parallel
       - run:
           command: |
+            cd application
             mkdir /tmp/test-results
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
