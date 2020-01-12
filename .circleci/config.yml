@@ -22,7 +22,6 @@ jobs:
   build:
     docker:
       - *default_docker_ruby_executor
-    working_directory: ~/application
     steps:
       - checkout
       - run:
@@ -44,7 +43,7 @@ jobs:
             bundle check || bundle install
       # Store bundle cache
       - save_cache:
-          key: bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: bundle-v2-{{ checksum "application/Gemfile.lock" }}
           paths:
             - vendor/bundle
   test:
