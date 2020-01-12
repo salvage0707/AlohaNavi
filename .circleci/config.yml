@@ -53,6 +53,9 @@ jobs:
       - *postgres
     steps:
       - checkout
+      - run:
+          name: change directory 
+          command: cd application
       - restore_cache:
           keys:
             - bundle-v2-{{ checksum "application/Gemfile.lock" }}
