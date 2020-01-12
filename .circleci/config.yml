@@ -69,7 +69,7 @@ jobs:
       - run:
           command: |
             cd application
-            la -a
+            ls -a
             ls vender/bundle
             mkdir /tmp/test-results
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
