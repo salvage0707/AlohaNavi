@@ -6,7 +6,7 @@ references:
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
-      BUNDLE_PATH: application/vendor/bundle
+      BUNDLE_PATH: vendor/bundle
       PGHOST: 127.0.0.1
       RAILS_ENV: test
   postgres: &postgres
