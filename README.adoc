@@ -1,7 +1,7 @@
 :toc:
 :imagesdir: img
 
-== プロジェクト
+= プロジェクト
 
 == 開始手順
 
@@ -10,7 +10,7 @@
 1. `Docker` がインストールされている
 1. `git` がインストールされている
 
-=== 手順
+=== 動作確認
 
 1. `$ git clone https://github.com/salvage0707-sgt/rails_api_template.git appname`
 1. `$ docker-compose build`
@@ -18,3 +18,11 @@
 1. `$ docker-compose run web rails db:create`
 1. `localhost:3000/system/test` にアクセスして、メッセージが帰ってきたらOK 
 1. `$ docker-compose down`
+
+=== 新規作成したリポジトリに変更
+
+1. Github( `…or push an existing repository from the command line` )に従う
+----
+$ git remote add origin https://github.com/salvage0707-sgt/ResBo.git
+$ git push -u origin master
+----
