@@ -121,3 +121,9 @@ workflows:
       - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
