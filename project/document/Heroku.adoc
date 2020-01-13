@@ -2,6 +2,7 @@
 :imagesdir: img
 
 = Heroku
+https://dashboard.heroku.com/apps
 
 == デプロイ(初回)
 プロジェクト開始手順が完了していることが前提。
@@ -19,6 +20,7 @@
 . `$ heroku container:release web`
 . `$ heroku run rails db:migrate`
 . `$ heroku open`
+
 
 == CI/CD
 `CircleCI.adoc` を参照。
