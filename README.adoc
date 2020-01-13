@@ -9,42 +9,42 @@ V 1.0.0
 
 === 前提条件
 
-1. `Docker` がインストールされている
-1. `git` がインストールされている
+. `Docker` がインストールされている
+. `git` がインストールされている
 
 === 動作確認
 
-1. `$ git clone https://github.com/salvage0707-sgt/rails_api_template.git appname`
-1. `$ docker-compose build`
-1. `$ docker-compose up -d`
-1. `$ docker-compose run web rails db:create`
-1. `localhost:3000/system/test` にアクセスして、メッセージが帰ってきたらOK 
-1. `$ docker-compose down`
+. `$ git clone https://github.com/salvage0707-sgt/rails_api_template.git appname`
+. `$ docker-compose build`
+. `$ docker-compose up -d`
+. `$ docker-compose run web rails db:create`
+. `localhost:3000/system/test` にアクセスして、メッセージが帰ってきたらOK 
+. `$ docker-compose down`
 
 === originのURLを新規作成したリポジトリに変更
 
-1. `$ git remote set-url origin url`
-※ `url` はリポジトリのURL
+. `$ git remote set-url origin url` +
+※ `url` はpush先リポジトリのURL
 
 === リポジトリにpush
 
-1. `README.adoc` をプロジェクトのものに書き換える
-1. `$ git push -u origin master`
+. `README.adoc` をプロジェクトのものに書き換える
+. `$ git push -u origin master`
 
 
 === テンプレートの更新時の初期設定(任意)
-
 本テンプレートが更新された場合に、反映するための設定
-1. `git remote add template https://github.com/salvage0707-sgt/rails_api_template.git`
+
+. `git remote add template https://github.com/salvage0707-sgt/rails_api_template.git`
 
 
 == テンプレートの更新
 使用したテンプレートが更新された場合に、反映する手順
 
 === 初期設定
-1. `git remote add template https://github.com/salvage0707-sgt/rails_api_template.git`
+. `git remote add template https://github.com/salvage0707-sgt/rails_api_template.git`
 
 === 反映手順
 
-1. `git pull template master`
+. `git pull template master` +
 ※ `README.adoc` の変更があった場合に、CONFLICTが起きる。プロジェクトで検討して反映すること。
