@@ -121,9 +121,10 @@ workflows:
       - test:
           requires:
             - build
-      - deploy:
+      - deploy-prod:
           requires:
             - build
+            - test
           filters:
             branches:
               only: master
