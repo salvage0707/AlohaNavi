@@ -13,6 +13,27 @@ https://dashboard.heroku.com/apps
 . `Billing` を選択。
 . `Billing Information` で `Add Credit Card` で追加。
 
+=== 環境変数設定
+
+. `$ heroku config:set RAILS_ENV=production`
+. `$ heroku config:set TZ=Asia/Tokyo`
+. `$ heroku config:set LANG=ja_JP.UTF-8`
+
+.環境変数
+|===
+|変数名 |値 |
+
+|RAILS_ENV
+|production
+
+|TZ
+|Asia/Tokyo
+
+|LANG
+|ja_JP.UTF-8
+
+|===
+
 === デプロイ(初回)
 プロジェクト開始手順が完了していることが前提。
 
