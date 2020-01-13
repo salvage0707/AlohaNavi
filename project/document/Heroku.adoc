@@ -4,14 +4,18 @@
 = Heroku
 
 == デプロイ(初回)
-Dockerfileがあるディレクトリで実行。プロジェクト開始手順が完了していることが前提。
+プロジェクト開始手順が完了していることが前提。
 
+1. `$ cd application`
 1. `$ docker-compose build`
+1. `$ docker-compose up -d`
+1. `$ cd ..`
 1. `$ heroku login`
 1. `$ heroku container:login`
-1. `$ heroku create`
+1. `$ cd application`
+1. `$ heroku create appname`
 1. `$ heroku container:push web`
 1. `$ heroku addons:create heroku-postgresql:hobby-dev`
-1. `$ heroku run rails db:migrat`
 1. `$ heroku container:release web`
+1. `$ heroku run rails db:migrate`
 1. `$ heroku open`
