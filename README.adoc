@@ -18,28 +18,31 @@ V 1.0.0
 . `$ docker-compose build`
 . `$ docker-compose up -d`
 . `$ docker-compose run web rails db:create`
-. `localhost:3000/system/test` にアクセスして、メッセージが帰ってきたらOK 
+. `localhost:3000/system/test` にアクセスして、メッセージが帰ってきたらOK 。
 . `$ docker-compose down`
 
 === originのURLを新規作成したリポジトリに変更
 
 . `$ git remote set-url origin url` +
-※ `url` はpush先リポジトリのURL
+※ `url` はpush先リポジトリのURL。
 
 === リポジトリにpush
 
-. `README.adoc` をプロジェクトのものに書き換える
+. `README.adoc` をプロジェクトのものに書き換える。
 . `$ git push -u origin master`
 
 
 == 開発補助の追加(任意)
 
+== チャットツール(Slack)
+`Slack.adoc` 「初期設定」参照
+
 === CI/CD
-`CircleCI.adoc` 参考
+`CircleCI.adoc` 「初期設定」参照
 
 
 == テンプレートの更新
-使用したテンプレートが更新された場合に、反映する手順
+使用したテンプレートが更新された場合に、反映する手順。
 
 === 初期設定
 . `git remote add template https://github.com/salvage0707-sgt/rails_api_template.git`

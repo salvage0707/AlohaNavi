@@ -1,22 +1,13 @@
 :toc:
 :imagesdir: img
 
-= コマンド早見表
+= Docker
 
-`Docker` と `docker-compose` を使用した、コンテナ内でのコマンド実行方法を記載
+== アプリケーション起動
 
-== docker compose
+. `$ $docker-compose build`
+. `$ docker-compose up　[-d]`
 
-|===
-|コマンド |説明|
+== buildしたコンテナの削除
 
-|`docker rm `docker ps -a -q``
-|buildしたコンテナを削除
-
-|===
-
-
-== アプリケーション起動手順
-
-. docker-compose build
-. docker-compose up　[-d]
+1. `$ docker rm `docker ps -a -q`
