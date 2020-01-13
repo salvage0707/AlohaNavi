@@ -73,11 +73,11 @@ masterブランチにpushされた際の、デプロイ設定。
 
 == 通知設定
 
-=== メールを非通知
+=== メール
 
 1. 右上のユーザーアイコンから、`User Settings` を選択。
 1. `Notification Settings` を選択。
-1. `Default Email Notifications` で `Don't send me emails.` を選択。
+1. `Default Email Notifications` で指定の設定を選択。
 
 TODO : 組織別のメール設定必要あるかも
 
