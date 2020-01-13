@@ -1,0 +1,39 @@
+AllCops:
+  TargetRubyVersion: 2.5.7
+Rails:
+  Enabled: true
+require: rubocop-rails
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+
+# frozen_string_literal: true問題解消
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# 複数行での「lambda」で「->」による省略記法を許可
+Lambda:
+  Enabled: false
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false
+
+# クラスにコメントを残さない
+Documentation:
+  Enabled: false
+
+# 行が長すぎる
+LineLength:
+  Enabled: false
+
+# Gemfileでエラーが出てしまうため、シンボル配列を許容
+Style/SymbolArray:
+  Enabled: false
