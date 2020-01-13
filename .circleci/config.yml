@@ -79,27 +79,13 @@ jobs:
           destination: test-results
   
   deploy-prod:
-    docker:
-      - *default_docker_ruby_executor
+    machine:
+      image: circleci/classic:edge
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - bundle-v4-{{ checksum "application/Gemfile.lock" }}
-            - bundle-v4-
-      - run:
-          name: Bundle Install
-          command: |
-            cd application
-            bundle check || bundle install
       - run:
           name: build docker image
-          command: |
-            echo $HEROKU_API_KEY
-            echo $HEROKU_APP_NAME
-            echo $HEROKU_AUTH_TOKEN
-            echo $HEROKU_LOGIN
-            docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web application
+          command: docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web application
       - run:
           name: setup heroku command
           command: bash .circleci/setup_heroku.sh
