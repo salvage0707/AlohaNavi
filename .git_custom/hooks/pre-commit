@@ -23,8 +23,8 @@ function error_log() {
 
     printf "\e[33;41;1m\n"
     echo "---------------------------------------------------------------------"
-    echo "message: $1"
-    echo "command: $2"
+    echo "message:\n  $1"
+    echo "command:\n  $2"
     echo "---------------------------------------------------------------------"
     printf "\e[m"
 }
@@ -58,13 +58,13 @@ function docker_run() {
 
 
 # rubocopでコードを解析
-rubocop="bundle exe rubocop -a"
+rubocop="bundle exe rubocop"
 start_message="checking code style"
-error_message="Please check code style"
+error_message="Please check code style. \n  try this command \"docker-compose run web bundle exe rubocop -a\""
 docker_run "$rubocop" "$start_message" "$error_message"
 
 # コードのセキュリティ解析
 brakeman="bundle exec brakeman -5 -A -w 1 -z"
 start_message="checking code security"
-error_message="Please check code security"
+error_message="Please check code security."
 docker_run "$brakeman" "$start_message" "$error_message"

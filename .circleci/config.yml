@@ -16,6 +16,18 @@ references:
       POSTGRES_DB: app_test
       POSTGRES_PASSWORD: password
 
+bundle_install: &bundle_install
+  - restore_cache:
+      keys:
+        - bundle-v4-{{ checksum "application/Gemfile.lock" }}
+        - bundle-v4-
+  - run:
+      name: Bundle Install
+      command: |
+        cd application
+        bundle check || bundle install
+
+
 jobs:
   build:
     docker:
@@ -25,19 +37,16 @@ jobs:
       - run:
           name: Which bundler?
           command: bundle -v
-      - restore_cache:
-          keys:
-            - bundle-v4-{{ checksum "application/Gemfile.lock" }}
-            - bundle-v4-
-      - run:
-          name: Bundle Install
-          command: |
-            cd application
-            bundle check || bundle install
+      <<: *bundle_install
       - save_cache:
           key: bundle-v4-{{ checksum "application/Gemfile.lock" }}
           paths:
             - application/vendor/bundle
+  # rubocop:
+  #   docker:
+  #     - *default_docker_ruby_executor
+  #   steps:
+  #     - checkout
   test:
     parallelism: 3
     docker:
