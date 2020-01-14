@@ -55,6 +55,7 @@ jobs:
       - run:
           name: Run rubocop
           command: |
+            ruby -v
             cd application
             bundle exe rubocop
   brakeman:
@@ -72,10 +73,10 @@ jobs:
             cd application
             bundle check || bundle install
       - run:
-          name: Run brekeman
+          name: Run brakeman
           command: |
             cd application
-            bundle exe brekeman
+            bundle exe brakeman
   test:
     parallelism: 3
     docker:
