@@ -54,8 +54,10 @@ jobs:
             bundle check || bundle install
       - run:
           name: Run rubocop
-          command: bundle exe rubocop
-  brekeman:
+          command: |
+            cd application
+            bundle exe rubocop
+  brakeman:
     docker:
       - *default_docker_ruby_executor
     steps:
@@ -71,7 +73,9 @@ jobs:
             bundle check || bundle install
       - run:
           name: Run brekeman
-          command: bundle exe brekeman
+          command: |
+            cd application
+            bundle exe brekeman
   test:
     parallelism: 3
     docker:
