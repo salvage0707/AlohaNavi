@@ -140,6 +140,12 @@ workflows:
   build_and_test:
     jobs:
       - build
+      - rubocop:
+          requires:
+            - build
+      - brakeman:
+          requires:
+            - build
       - test:
           requires:
             - build
