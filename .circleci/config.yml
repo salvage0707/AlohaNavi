@@ -153,6 +153,8 @@ workflows:
       - test:
           requires:
             - build
+            - rubocop
+            - brakeman
       - deploy-prod:
           requires:
             - build
