@@ -27,17 +27,47 @@ jobs:
           command: bundle -v
       - restore_cache:
           keys:
-            - bundle-v4-{{ checksum "application/Gemfile.lock" }}
-            - bundle-v4-
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-
       - run:
           name: Bundle Install
-          command: |
-            cd application
-            bundle check || bundle install
+          command: bundle check || bundle install
       - save_cache:
-          key: bundle-v4-{{ checksum "application/Gemfile.lock" }}
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
-            - application/vendor/bundle
+            - vendor/bundle
+  rubocop:
+    docker:
+      - *default_docker_ruby_executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - run:
+          name: Run rubocop
+          command: |
+            bundle exe rubocop -v
+            bundle exe rubocop
+  brakeman:
+    docker:
+      - *default_docker_ruby_executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - run:
+          name: Run brakeman
+          command: bundle exe brakeman
   test:
     parallelism: 3
     docker:
@@ -47,32 +77,28 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v4-{{ checksum "application/Gemfile.lock" }}
-            - bundle-v4-
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-
       - run:
           name: Bundle Install
-          command: |
-            cd application
-            bundle check || bundle install
+          command: bundle check || bundle install
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
           name: Database setup
           command: |
-            cd application
             bundle exec rake db:create
             bundle exec rails db:schema:load --trace
       - run:
           command: |
-            cd application
             mkdir /tmp/test-results
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
       - store_test_results:
-          path: application/tmp/test-results
+          path: tmp/test-results
       - store_artifacts:
-          path: application/tmp/test-results
+          path: tmp/test-results
           destination: test-results
   
   deploy-prod:
@@ -82,7 +108,7 @@ jobs:
       - checkout
       - run:
           name: build docker image
-          command: docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web application
+          command: docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web .
       - run:
           name: setup heroku command
           command: bash .circleci/setup_heroku.sh
@@ -92,7 +118,6 @@ jobs:
       - run:
           name: push container to registry.heroku.com
           command: |
-            cd application
             docker login --username=_ --password=$HEROKU_AUTH_TOKEN registry.heroku.com
             docker push registry.heroku.com/${HEROKU_APP_NAME}/web
             heroku container:push web --app ${HEROKU_APP_NAME}
@@ -106,9 +131,17 @@ workflows:
   build_and_test:
     jobs:
       - build
+      - rubocop:
+          requires:
+            - build
+      - brakeman:
+          requires:
+            - build
       - test:
           requires:
             - build
+            - rubocop
+            - brakeman
       - deploy-prod:
           requires:
             - build

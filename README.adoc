@@ -2,15 +2,13 @@
 :imagesdir: img
 
 = プロジェクト
-V 1.0.0
 
-== 開始手順
-プロジェクトの開始手順
+== 開発開始手順
 
 === 前提条件
 
-. `Docker` がインストールされている
-. `git` がインストールされている
+. `Docker` がインストールされている。
+. `git` がインストールされている。
 
 === 動作確認
 
@@ -21,35 +19,33 @@ V 1.0.0
 . `http://localhost:3000/system/test` にアクセスして、メッセージが帰ってきたらOK 。
 . `$ docker-compose down`
 
-=== originに新規作成したリポジトリのURLを設定
+=== プロジェクトの設定を反映
+プロジェクト固有の設定を反映する。
 
-. `$ git remote set-url origin url` +
-※ `url` はpush先リポジトリのURL。
+. `$ bin/init`
 
-=== リポジトリにpush
+== プロジェクトに設定されているもの
 
-. `README.adoc` をプロジェクトのものに書き換える。
-. `$ git push -u origin master`
+=== 静的コード解析
+commit時に `rubocop` でコードチェックされる。自動修正可能なものは、自動修正される。
 
-=== Herokuの初期設定
-`Heroku.adoc` 「初期設定」参照
+=== コードのセキュリティチェック
+commit時に `brekeman` でコードチェックされる。セキュリティ面に問題があるコードがある場合に指摘される。
 
-
-== 開発補助の追加(任意)
-
-== チャットツール(Slack)
-`Slack.adoc` 「初期設定」参照
+=== Dockerを用いた開発環境
+DockerとDocker Composeを使用した、コンテナ開発環境。
 
 === CI/CD
-`CircleCI.adoc` 「初期設定」参照
+リモートブランチpush時にCircleCIを通して、CI/CDが走る。。
 
-== テンプレートの更新
-使用したテンプレートが更新された場合に、反映する手順。
+==== 静的コード解析
+`rubocop` でコードチェックされる。自動修正可能なものは、自動修正される。
 
-=== 初期設定
-. `git remote add template https://github.com/salvage0707-sgt/rails_api_template.git`
+=== コードのセキュリティチェック
+`brekeman` でコードチェックされる。セキュリティ面に問題があるコードがある場合に指摘される。
 
-=== 反映手順
+==== テスト
+RSpecテストが実行される。
 
-. `git pull template master` +
-※ `README.adoc` の変更があった場合に、CONFLICTが起きる。プロジェクトで検討して反映すること。
+=== Herokuへデプロイ
+masterブランチ実行時、Herokuへデプロイされる。

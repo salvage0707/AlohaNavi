@@ -9,6 +9,7 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'bin/*'
+    - 'vendor/**/*'
 
 # frozen_string_literal: true問題解消
 Style/FrozenStringLiteralComment:

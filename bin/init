@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+# 処理開始
+echo "Begin Settings"
+
+# gitの設定
+# hooksをプロジェクト固有のものを反映
+echo "Setup gitconfig"
+git config --local core.hooksPath .git_custom/hooks
+chmod -R 555 .git_custom/hooks
+
+
+# 処理終了
+echo "End Settings"
