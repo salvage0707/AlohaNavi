@@ -50,7 +50,9 @@ jobs:
           command: bundle check || bundle install
       - run:
           name: Run rubocop
-          command: bundle exe rubocop
+          command: |
+            bundle exe rubocop -v
+            bundle exe rubocop
   brakeman:
     docker:
       - *default_docker_ruby_executor
