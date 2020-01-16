@@ -41,7 +41,7 @@ function docker_run() {
     printf "\e[m"
 
     # チェックコマンド実行
-    docker-compose -f application/docker-compose.yml run web $command  >& $temp_name
+    docker-compose run web $command  >& $temp_name
     if [ $? -ne 0 ]; then
         error_log "$error_message" "$command"
         cat $temp_name
