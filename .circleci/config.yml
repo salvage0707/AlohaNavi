@@ -27,13 +27,13 @@ jobs:
           command: bundle -v
       - restore_cache:
           keys:
-            - bundle-v4-{{ checksum "Gemfile.lock" }}
-            - bundle-v4-
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       - save_cache:
-          key: bundle-v4-{{ checksum "Gemfile.lock" }}
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
   rubocop:
@@ -43,8 +43,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v4-{{ checksum "Gemfile.lock" }}
-            - bundle-v4-
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
@@ -60,8 +60,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v4-{{ checksum "Gemfile.lock" }}
-            - bundle-v4-
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
@@ -77,8 +77,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - bundle-v4-{{ checksum "Gemfile.lock" }}
-            - bundle-v4-
+            - bundle-v1-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
