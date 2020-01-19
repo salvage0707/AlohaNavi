@@ -17,6 +17,8 @@ services:
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
+    environment:
+      DATABASE_HOST: db
     ports:
       - "3000:3000"
     depends_on:
