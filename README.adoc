@@ -12,7 +12,7 @@
 
 === 動作確認
 
-. `$ git clone https://github.com/salvage0707-sgt/rails_api_template.git appname`
+. `$ git clone https://github.com/salvage0707/AlohaNavi.git appname`
 . `$ docker-compose build`
 . `$ docker-compose up -d`
 . `$ docker-compose run web rails db:create`
